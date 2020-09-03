@@ -1,157 +1,181 @@
 module PrettyMagic
   class Icons
-    def self.mana(symbolText, options = {})
+    def self.mana_symbols(symbolText, options = {})
         options = {cost: true, shadow: false, size: 1, fixed_width: false}.merge(options)
 
         prettySymbol = ""
-        classText = ""
-        
-        if(options[:cost])
-          classText += "ms-cost "
-        end
-        if(options[:shadow])
-          classText += "ms-shadow "
-        end
-        if(options[:size] > 1)
-          classText += "ms-#{options[:size]}x "
-        end
-        if(options[:fixed_width])
-          classText += "ms-fw "
-        end
-        
-        
+      
         case symbolText
-            when '{T}'
-              prettySymbol = '<i class="ms ms-tap ' + classText + '"></i>'
-            when '{Q}'
-              prettySymbol = '<i class="ms ms-untap ' + classText + '"></i>'
-            when '{E}'
-              prettySymbol = '<i class="ms ms-e ' + classText + '"></i>'
-            when '{PW}'
-              prettySymbol = '<i class="ms ms-planeswalker ' + classText + '"></i>'
-            when '{CHAOS}'
-              prettySymbol = '<i class="ms ms-chaos ' + classText + '"></i>'
-            when '{X}'
-              prettySymbol = '<i class="ms ms-x ' + classText + '"></i>'
-            when '{Y}'
-              prettySymbol = '<i class="ms ms-y ' + classText + '"></i>'
-            when '{Z}'
-              prettySymbol = '<i class="ms ms-z ' + classText + '"></i>'
-            when '{0}'
-              prettySymbol = '<i class="ms ms-0 ' + classText + '"></i>'
-            when '{½}'
-              prettySymbol = '<i class="ms ms-1-2 ' + classText + '"></i>'
-            when '{1}'
-              prettySymbol = '<i class="ms ms-1 ' + classText + '"></i>'
-            when '{2}'
-              prettySymbol = '<i class="ms ms-2 ' + classText + '"></i>'
-            when '{3}'
-              prettySymbol = '<i class="ms ms-3 ' + classText + '"></i>'
-            when '{4}'
-              prettySymbol = '<i class="ms ms-4 ' + classText + '"></i>'
-            when '{5}'
-              prettySymbol = '<i class="ms ms-5 ' + classText + '"></i>'
-            when '{6}'
-              prettySymbol = '<i class="ms ms-6 ' + classText + '"></i>'
-            when '{7}'
-              prettySymbol = '<i class="ms ms-7 ' + classText + '"></i>'
-            when '{8}'
-              prettySymbol = '<i class="ms ms-8 ' + classText + '"></i>'
-            when '{9}'
-              prettySymbol = '<i class="ms ms-9 ' + classText + '"></i>'
-            when '{10}'
-              prettySymbol = '<i class="ms ms-10 ' + classText + '"></i>'
-            when '{11}'
-              prettySymbol = '<i class="ms ms-11 ' + classText + '"></i>'
-            when '{12}'
-              prettySymbol = '<i class="ms ms-12 ' + classText + '"></i>'
-            when '{13}'
-              prettySymbol = '<i class="ms ms-13 ' + classText + '"></i>'
-            when '{14}'
-              prettySymbol = '<i class="ms ms-14 ' + classText + '"></i>'
-            when '{15}'
-              prettySymbol = '<i class="ms ms-15 ' + classText + '"></i>'
-            when '{16}'
-              prettySymbol = '<i class="ms ms-16 ' + classText + '"></i>'
-            when '{17}'
-              prettySymbol = '<i class="ms ms-17 ' + classText + '"></i>'
-            when '{18}'
-              prettySymbol = '<i class="ms ms-18 ' + classText + '"></i>'
-            when '{19}'
-              prettySymbol = '<i class="ms ms-19 ' + classText + '"></i>'
-            when '{20}'
-              prettySymbol = '<i class="ms ms-20 ' + classText + '"></i>'
-            when '{100}'
-              prettySymbol = '<i class="ms ms-100 ' + classText + '"></i>'
-            when '{1000000}'
-              prettySymbol = '<i class="ms ms-1000000 ' + classText + '"></i>'
-            when '{∞}'
-              prettySymbol = '<i class="ms ms-infinity ' + classText + '"></i>'
-            when '{W/U}'
-              prettySymbol = '<i class="ms ms-wu ' + classText + '"></i>'
-            when '{W/B}'
-              prettySymbol = '<i class="ms ms-wb ' + classText + '"></i>'
-            when '{B/R}'
-              prettySymbol = '<i class="ms ms-br ' + classText + '"></i>'
-            when '{B/G}'
-              prettySymbol = '<i class="ms ms-bg ' + classText + '"></i>'
-            when '{U/B}'
-              prettySymbol = '<i class="ms ms-ub ' + classText + '"></i>'
-            when '{U/R}'
-              prettySymbol = '<i class="ms ms-ur ' + classText + '"></i>'
-            when '{R/G}'
-              prettySymbol = '<i class="ms ms-rg ' + classText + '"></i>'
-            when '{R/W}'
-              prettySymbol = '<i class="ms ms-rw ' + classText + '"></i>'
-            when '{G/W}'
-              prettySymbol = '<i class="ms ms-gw ' + classText + '"></i>'
-            when '{G/U}'
-              prettySymbol = '<i class="ms ms-gu ' + classText + '"></i>'
-            when '{2/W}'
-              prettySymbol = '<i class="ms ms-2w ' + classText + '"></i>'
-            when '{2/U}'
-              prettySymbol = '<i class="ms ms-2u ' + classText + '"></i>'
-            when '{2/B}'
-              prettySymbol = '<i class="ms ms-2b ' + classText + '"></i>'
-            when '{2/R}'
-              prettySymbol = '<i class="ms ms-2r ' + classText + '"></i>'
-            when '{2/G}'
-              prettySymbol = '<i class="ms ms-2g ' + classText + '"></i>'
-            when '{P}'
-              prettySymbol = '<i class="ms ms-p ' + classText + '"></i>'
-            when '{W/P}'
-              prettySymbol = '<i class="ms ms-wp ' + classText + '"></i>'
-            when '{U/P}'
-              prettySymbol = '<i class="ms ms-up ' + classText + '"></i>'
-            when '{B/P}'
-              prettySymbol = '<i class="ms ms-bp ' + classText + '"></i>'
-            when '{R/P}'
-              prettySymbol = '<i class="ms ms-rp ' + classText + '"></i>'
-            when '{G/P}'
-              prettySymbol = '<i class="ms ms-gp ' + classText + '"></i>'
-            when '{HW}'
-              prettySymbol = '<i class="ms ms-hw ' + classText + '"></i>'
-            when '{HR}'
-              prettySymbol = '<i class="ms ms-hr ' + classText + '"></i>'
-            when '{W}'
-              prettySymbol = '<i class="ms ms-w ' + classText + '"></i>'
-            when '{U}'
-              prettySymbol = '<i class="ms ms-u ' + classText + '"></i>'
-            when '{B}'
-              prettySymbol = '<i class="ms ms-b ' + classText + '"></i>'
-            when '{R}'
-              prettySymbol = '<i class="ms ms-r ' + classText + '"></i>'
-            when '{G}'
-              prettySymbol = '<i class="ms ms-g ' + classText + '"></i>'
-            when '{C}'
-              prettySymbol = '<i class="ms ms-c ' + classText + '"></i>'
-            when '{S}'
-              prettySymbol = '<i class="ms ms-s ' + classText + '"></i>'
+            when'{X}'
+              prettySymbol ='ms-x'
+            when'{Y}'
+              prettySymbol ='ms-y'
+            when'{Z}'
+              prettySymbol ='ms-z'
+            when'{0}'
+              prettySymbol ='ms-0'
+            when'{½}','{1/2}'
+              prettySymbol ='ms-1-2'
+            when'{1}'
+              prettySymbol ='ms-1'
+            when'{2}'
+              prettySymbol ='ms-2'
+            when'{3}'
+              prettySymbol ='ms-3'
+            when'{4}'
+              prettySymbol ='ms-4'
+            when'{5}'
+              prettySymbol ='ms-5'
+            when'{6}'
+              prettySymbol ='ms-6'
+            when'{7}'
+              prettySymbol ='ms-7'
+            when'{8}'
+              prettySymbol ='ms-8'
+            when'{9}'
+              prettySymbol ='ms-9'
+            when'{10}'
+              prettySymbol ='ms-10'
+            when'{11}'
+              prettySymbol ='ms-11'
+            when'{12}'
+              prettySymbol ='ms-12'
+            when'{13}'
+              prettySymbol ='ms-13'
+            when'{14}'
+              prettySymbol ='ms-14'
+            when'{15}'
+              prettySymbol ='ms-15'
+            when'{16}'
+              prettySymbol ='ms-16'
+            when'{17}'
+              prettySymbol ='ms-17'
+            when'{18}'
+              prettySymbol ='ms-18'
+            when'{19}'
+              prettySymbol ='ms-19'
+            when'{20}'
+              prettySymbol ='ms-20'
+            when'{100}'
+              prettySymbol ='ms-100'
+            when'{1000000}'
+              prettySymbol ='ms-1000000'
+            when'{∞}','{infinity}'
+              prettySymbol ='ms-infinity'
+            when'{W/U}'
+              prettySymbol ='ms-wu'
+            when'{W/B}'
+              prettySymbol ='ms-wb'
+            when'{B/R}'
+              prettySymbol ='ms-br'
+            when'{B/G}'
+              prettySymbol ='ms-bg'
+            when'{U/B}'
+              prettySymbol ='ms-ub'
+            when'{U/R}'
+              prettySymbol ='ms-ur'
+            when'{R/G}'
+              prettySymbol ='ms-rg'
+            when'{R/W}'
+              prettySymbol ='ms-rw'
+            when'{G/W}'
+              prettySymbol ='ms-gw'
+            when'{G/U}'
+              prettySymbol ='ms-gu'
+            when'{2/W}'
+              prettySymbol ='ms-2w'
+            when'{2/U}'
+              prettySymbol ='ms-2u'
+            when'{2/B}'
+              prettySymbol ='ms-2b'
+            when'{2/R}'
+              prettySymbol ='ms-2r'
+            when'{2/G}'
+              prettySymbol ='ms-2g'
+            when'{P}'
+              prettySymbol ='ms-p'
+            when'{W/P}'
+              prettySymbol ='ms-wp'
+            when'{U/P}'
+              prettySymbol ='ms-up'
+            when'{B/P}'
+              prettySymbol ='ms-bp'
+            when'{R/P}'
+              prettySymbol ='ms-rp'
+            when'{G/P}'
+              prettySymbol ='ms-gp'
+            when'{HW}'
+              prettySymbol ='ms-hw'
+            when'{HR}'
+              prettySymbol ='ms-hr'
+            when'{W}'
+              prettySymbol ='ms-w'
+            when'{U}'
+              prettySymbol ='ms-u'
+            when'{B}'
+              prettySymbol ='ms-b'
+            when'{R}'
+              prettySymbol ='ms-r'
+            when'{G}'
+              prettySymbol ='ms-g'
+            when'{C}'
+              prettySymbol ='ms-c'
+            when'{S}'
+              prettySymbol ='ms-s'
             else
-              prettySymbol = symbolText
+              return symbolText
             end
             
-            prettySymbol
+            i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+    end
+    
+    def self.card_symbols(symbolText, options = {})
+        case symbolText
+        when'{T}','{tap}'
+              prettySymbol ='ms-tap'
+            when'{Q}','{untap}'
+              prettySymbol ='ms-untap'
+            when'{E}'
+              prettySymbol ='ms-e'
+            when'{PW}'
+              prettySymbol ='ms-planeswalker'
+            when'{CHAOS}'
+              prettySymbol ='ms-chaos'
+        end
+    end
+    
+    def self.guild_symbols(symbolText, options = {})
+        
+    end
+    
+    def self.poleis_symbols(symbolText, options = {})
+    
+    end
+    
+    private
+    
+    def self.i_tag(inner_classes)
+        '<i class="ms ' + inner_classes +'"></i>'
+    end
+    
+    def self.optional_classes(cost, shadow, size, fixed_width)
+        
+        class_text = ""
+        
+        if(cost)
+          class_text += "ms-cost "
+        end
+        if(shadow)
+          class_text += "ms-shadow "
+        end
+        if(size > 1)
+          class_text += "ms-#{options[:size]}x "
+        end
+        if(fixed_width)
+          class_text += "ms-fw "
+        end 
+        
+        class_text
     end
   end
 end
