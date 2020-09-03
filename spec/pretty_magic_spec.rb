@@ -5,6 +5,8 @@ RSpec.describe PrettyMagic do
   it "has a version number" do
     expect(PrettyMagic::VERSION).not_to be nil
   end
+  
+  ## Mana Symbols
 
   it "takes a mana or resource code in curly brackets and outputs an html <i> tag with the correct classes" do
     
@@ -17,10 +19,22 @@ RSpec.describe PrettyMagic do
     expect(PrettyMagic::Icons.mana_symbols("{notreal}")).to eql("{notreal}")
   end
   
-  it "takes a card symbol in curly brackets and outputs an html <i> tag with the correct classes"
+  ## Card Symbols
+  
+  it "takes a card symbol in curly brackets and outputs an html <i> tag with the correct classes" do
+    expect(PrettyMagic::Icons.card_symbols("{tap}")).to eql("")
+  end
+  
+  it "takes an invalid card symbol in curly brackets and outputs the symbol back unchanged" do
+    expect(PrettyMagic::Icons.card_symbols("{bill.murray}")).to eql("{bill.murray}")
+  end
+  
   
   it "takes a Guild and Clan Watermarks symbol in curly brackets and outputs an html <i> tag with the correct classes"
+  it "takes an invalid guild and clan symbol in curly brackets and outputs the symbol back unchanged"
+  
+  it "takes a Poleis symbol in curly brackets and outputs an html <i> tag with the correct classes"
+  it "takes an poleis card symbol in curly brackets and outputs the symbol back unchanged"
   
   
-  it "takes a Polesis symbol in curly brackets and outputs an html <i> tag with the correct classes"
 end

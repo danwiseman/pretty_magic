@@ -5,7 +5,7 @@ module PrettyMagic
 
         prettySymbol = ""
       
-        case symbolText
+        case symbolText.upcase
             when'{X}'
               prettySymbol ='ms-x'
             when'{Y}'
@@ -60,7 +60,7 @@ module PrettyMagic
               prettySymbol ='ms-100'
             when'{1000000}'
               prettySymbol ='ms-1000000'
-            when'{∞}','{infinity}'
+            when'{∞}','{INFINITY}'
               prettySymbol ='ms-infinity'
             when'{W/U}'
               prettySymbol ='ms-wu'
@@ -130,18 +130,51 @@ module PrettyMagic
     end
     
     def self.card_symbols(symbolText, options = {})
+        options = {cost: true, shadow: false, size: 1, fixed_width: false, loyalty: nil, saga_number: nil}.merge(options)
+
+        prettySymbol = ""
+        
         case symbolText
-        when'{T}','{tap}'
-              prettySymbol ='ms-tap'
-            when'{Q}','{untap}'
-              prettySymbol ='ms-untap'
-            when'{E}'
-              prettySymbol ='ms-e'
-            when'{PW}'
-              prettySymbol ='ms-planeswalker'
-            when'{CHAOS}'
-              prettySymbol ='ms-chaos'
+          when'{T}','{TAP}'
+            prettySymbol ='ms-tap'
+          when'{Q}','{UNTAP}'
+            prettySymbol ='ms-untap'
+          when '{TAP-ALT}'
+            prettySymbol ='ms-tap-alt'
+          when'{CHAOS}'
+            prettySymbol ='ms-chaos'
+          when '{ARTIFACT}'
+            prettySymbol = 'ms-artifact'
+          when '{CREATURE}'
+            prettySymbol = 'ms-creature'
+          when '{ENCHANTMENT}'
+            prettySymbol = 'ms-enchantment'
+          when '{INSTANT}'
+            prettySymbol = 'ms-instant'
+          when '{LAND}'
+            prettySymbol = 'ms-land'
+          when'{PW}','{PLANESWALKER}'
+            prettySymbol ='ms-planeswalker'
+          when'{SORCERY}'
+            prettySymbol = 'ms-sorcery'
+          when '{MULTIPLE}'
+            prettySymbol = 'ms-multiple'
+          when '{FLASHBACK}'
+            prettySymbol = 'ms-flashback'
+          when '{LOYALTY-UP}'
+            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-up ms-loyalty-#{loyalty}" : 'ms-loyalty-up'
+          when '{LOYALTY-DOWN}'
+            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-down ms-loyalty-#{loyalty}" : 'ms-loyalty-down'
+          when'{E}'
+            prettySymbol ='ms-e'
+          
+          else
+            return symbolText
         end
+        
+        
+        
+        i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
     end
     
     def self.guild_symbols(symbolText, options = {})
