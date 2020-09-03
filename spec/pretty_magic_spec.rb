@@ -22,7 +22,17 @@ RSpec.describe PrettyMagic do
   ## Card Symbols
   
   it "takes a card symbol in curly brackets and outputs an html <i> tag with the correct classes" do
-    expect(PrettyMagic::Icons.card_symbols("{tap}")).to eql("")
+    expect(PrettyMagic::Icons.card_symbols("{tap}")).to eql("<i class=\"ms ms-tap \"></i>")
+    
+    expect(PrettyMagic::Icons.card_symbols("{loyalty-up}", loyalty: 3)).to eql("<i class=\"ms ms-loyalty-up ms-loyalty-3 \"></i>")
+    
+    expect(PrettyMagic::Icons.card_symbols("{loyalty-up}", loyalty: 44)).to eql("<i class=\"ms ms-loyalty-up \"></i>")
+    
+    expect(PrettyMagic::Icons.card_symbols("{loyalty-down}")).to eql("<i class=\"ms ms-loyalty-down \"></i>")
+    
+    expect(PrettyMagic::Icons.card_symbols("{saga}", saga_number: 4)).to eql("<i class=\"ms ms-saga ms-saga-4 \"></i>")
+    
+    expect(PrettyMagic::Icons.card_symbols("{saga}", saga_number: 44)).to eql("<i class=\"ms ms-saga \"></i>")
   end
   
   it "takes an invalid card symbol in curly brackets and outputs the symbol back unchanged" do

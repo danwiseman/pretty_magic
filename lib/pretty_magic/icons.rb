@@ -122,6 +122,8 @@ module PrettyMagic
               prettySymbol ='ms-c'
             when'{S}'
               prettySymbol ='ms-s'
+            when '{E}'
+              prettySymbol = 'ms-e'
             else
               return symbolText
             end
@@ -130,11 +132,13 @@ module PrettyMagic
     end
     
     def self.card_symbols(symbolText, options = {})
-        options = {cost: true, shadow: false, size: 1, fixed_width: false, loyalty: nil, saga_number: nil}.merge(options)
+        options = {cost: false, shadow: false, size: 1, fixed_width: false, loyalty: nil, saga_number: nil}.merge(options)
 
         prettySymbol = ""
+        loyalty = options[:loyalty]
+        saga_number = options[:saga_number]
         
-        case symbolText
+        case symbolText.upcase
           when'{T}','{TAP}'
             prettySymbol ='ms-tap'
           when'{Q}','{UNTAP}'
@@ -165,14 +169,39 @@ module PrettyMagic
             prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-up ms-loyalty-#{loyalty}" : 'ms-loyalty-up'
           when '{LOYALTY-DOWN}'
             prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-down ms-loyalty-#{loyalty}" : 'ms-loyalty-down'
-          when'{E}'
-            prettySymbol ='ms-e'
-          
+          when '{LOYALTY-ZERO}'
+            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-zero ms-loyalty-#{loyalty}" : 'ms-loyalty-zero'
+          when '{LOYALTY-START}'
+            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-start ms-loyalty-#{loyalty}" : 'ms-loyalty-start'
+          when '{DFC-DAY}'
+            prettySymbol = 'ms-dfc-day'
+          when '{DFC-NIGHT}'
+            prettySymbol = 'ms-dfc-night'
+          when '{DFC-SPARK}'
+            prettySymbol = 'ms-dfc-spark'
+          when '{DFC-IGNITE}'
+            prettySymbol = 'ms-dfc-ignite'
+          when '{DFC-MOON}'
+            prettySymbol = 'ms-dfc-moon'
+          when '{DFC-EMRAKUL}'
+            prettySymbol = 'ms-dfc-emrakul'
+          when '{DFC-ENCHANTMENT}'
+            prettySymbol = 'ms-dfc-enchantment'
+          when '{POWER}'
+            prettySymbol = 'ms-power'
+          when '{TOUGHNESS}'
+            prettySymbol = 'ms-toughness'
+          when '{ARTIST-BRUSH}'
+            prettySymbol = 'ms-artist-brush'
+          when '{ARTIST-NIB}'
+            prettySymbol = 'ms-artist-nib'
+          when '{SAGA}'
+            prettySymbol = ((0...5) === saga_number) ? "ms-saga ms-saga-#{saga_number}" : 'ms-saga'
+          when'{ACORN}'
+            prettySymbol ='ms-acorn'
           else
             return symbolText
         end
-        
-        
         
         i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
     end
