@@ -25,9 +25,9 @@ Run `PrettyMagic::ManaIcons.mana_symbols("{MANA SYMBOL}")` to get html tags for 
 
 Run `PrettyMagic::ManaIcons.card_symbols("{CARD SYMBOL}")` to get html tags for the Card Symbols as documented at https://mana.andrewgioia.com/icons.html
 
-Run `PrettyMagic::ManaIcons.mana_symbols("{GUILD}")` to get html tags for the Guild and Clan Watermarks as documented at https://mana.andrewgioia.com/icons.html
+Run `PrettyMagic::ManaIcons.guild_symbols("{GUILD}")` to get html tags for the Guild and Clan Watermarks as documented at https://mana.andrewgioia.com/icons.html
 
-Run `PrettyMagic::ManaIcons.mana_symbols("{POLEIS}")` to get html tags for the Poleis Symbols as documented at https://mana.andrewgioia.com/icons.html
+Run `PrettyMagic::ManaIcons.poleis_symbols("{POLEIS}")` to get html tags for the Poleis Symbols as documented at https://mana.andrewgioia.com/icons.html
 
 Also, ensure the fonts are installed as documented on the fonts' githubs.
 
