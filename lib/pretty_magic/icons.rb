@@ -4,131 +4,38 @@ module PrettyMagic
         options = {cost: true, shadow: false, size: 1, fixed_width: false}.merge(options)
 
         prettySymbol = ""
-      
+        easy_match = ""
+        split_match = ""
+        
+        # first handle special cases that are not that easy to convert
         case symbolText.upcase
-            when'{X}'
-              prettySymbol ='ms-x'
-            when'{Y}'
-              prettySymbol ='ms-y'
-            when'{Z}'
-              prettySymbol ='ms-z'
-            when'{0}'
-              prettySymbol ='ms-0'
-            when'{½}','{1/2}'
-              prettySymbol ='ms-1-2'
-            when'{1}'
-              prettySymbol ='ms-1'
-            when'{2}'
-              prettySymbol ='ms-2'
-            when'{3}'
-              prettySymbol ='ms-3'
-            when'{4}'
-              prettySymbol ='ms-4'
-            when'{5}'
-              prettySymbol ='ms-5'
-            when'{6}'
-              prettySymbol ='ms-6'
-            when'{7}'
-              prettySymbol ='ms-7'
-            when'{8}'
-              prettySymbol ='ms-8'
-            when'{9}'
-              prettySymbol ='ms-9'
-            when'{10}'
-              prettySymbol ='ms-10'
-            when'{11}'
-              prettySymbol ='ms-11'
-            when'{12}'
-              prettySymbol ='ms-12'
-            when'{13}'
-              prettySymbol ='ms-13'
-            when'{14}'
-              prettySymbol ='ms-14'
-            when'{15}'
-              prettySymbol ='ms-15'
-            when'{16}'
-              prettySymbol ='ms-16'
-            when'{17}'
-              prettySymbol ='ms-17'
-            when'{18}'
-              prettySymbol ='ms-18'
-            when'{19}'
-              prettySymbol ='ms-19'
-            when'{20}'
-              prettySymbol ='ms-20'
-            when'{100}'
-              prettySymbol ='ms-100'
-            when'{1000000}'
-              prettySymbol ='ms-1000000'
-            when'{∞}','{INFINITY}'
-              prettySymbol ='ms-infinity'
-            when'{W/U}'
-              prettySymbol ='ms-wu'
-            when'{W/B}'
-              prettySymbol ='ms-wb'
-            when'{B/R}'
-              prettySymbol ='ms-br'
-            when'{B/G}'
-              prettySymbol ='ms-bg'
-            when'{U/B}'
-              prettySymbol ='ms-ub'
-            when'{U/R}'
-              prettySymbol ='ms-ur'
-            when'{R/G}'
-              prettySymbol ='ms-rg'
-            when'{R/W}'
-              prettySymbol ='ms-rw'
-            when'{G/W}'
-              prettySymbol ='ms-gw'
-            when'{G/U}'
-              prettySymbol ='ms-gu'
-            when'{2/W}'
-              prettySymbol ='ms-2w'
-            when'{2/U}'
-              prettySymbol ='ms-2u'
-            when'{2/B}'
-              prettySymbol ='ms-2b'
-            when'{2/R}'
-              prettySymbol ='ms-2r'
-            when'{2/G}'
-              prettySymbol ='ms-2g'
-            when'{P}'
-              prettySymbol ='ms-p'
-            when'{W/P}'
-              prettySymbol ='ms-wp'
-            when'{U/P}'
-              prettySymbol ='ms-up'
-            when'{B/P}'
-              prettySymbol ='ms-bp'
-            when'{R/P}'
-              prettySymbol ='ms-rp'
-            when'{G/P}'
-              prettySymbol ='ms-gp'
-            when'{HW}'
-              prettySymbol ='ms-hw'
-            when'{HR}'
-              prettySymbol ='ms-hr'
-            when'{W}'
-              prettySymbol ='ms-w'
-            when'{U}'
-              prettySymbol ='ms-u'
-            when'{B}'
-              prettySymbol ='ms-b'
-            when'{R}'
-              prettySymbol ='ms-r'
-            when'{G}'
-              prettySymbol ='ms-g'
-            when'{C}'
-              prettySymbol ='ms-c'
-            when'{S}'
-              prettySymbol ='ms-s'
-            when '{E}'
-              prettySymbol = 'ms-e'
-            else
-              return symbolText
-            end
-            
-            i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+          when '{½}', '{1/2}'
+            prettySymbol = "ms-1-2"
+          when '{∞}'
+            prettySymbol = "ms-infinity"
+          else
+            prettySymbol = ""
+        end
+      
+        # easy matches, just one letter or number
+        easy_match = symbolText.upcase[/{(X|Y|Z|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|100|1000000|INFINITY|P|HW|HR|W|U|B|R|G|C|S|E)}/, 1]
+        # split or hybrids
+        split_match = symbolText.upcase[/{(W\/U|W\/B|B\/R|B\/G|U\/B|U\/R|R\/G|R\/W|G\/W|G\/U|2\/W|2\/U|2\/B|2\/R|2\/G|W\/P|U\/P|B\/P|R\/P|G\/P)}/, 1]
+ 
+ 
+        unless easy_match.nil?
+          prettySymbol = "ms-#{easy_match.downcase}"
+        end
+        unless split_match.nil?
+          prettySymbol = "ms-#{split_match.downcase.gsub("/", "")}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
+        
     end
     
     def self.card_symbols(symbolText, options = {})
@@ -139,79 +46,72 @@ module PrettyMagic
         saga_number = options[:saga_number]
         
         case symbolText.upcase
-          when'{T}','{TAP}'
-            prettySymbol ='ms-tap'
-          when'{Q}','{UNTAP}'
-            prettySymbol ='ms-untap'
-          when '{TAP-ALT}'
-            prettySymbol ='ms-tap-alt'
-          when'{CHAOS}'
-            prettySymbol ='ms-chaos'
-          when '{ARTIFACT}'
-            prettySymbol = 'ms-artifact'
-          when '{CREATURE}'
-            prettySymbol = 'ms-creature'
-          when '{ENCHANTMENT}'
-            prettySymbol = 'ms-enchantment'
-          when '{INSTANT}'
-            prettySymbol = 'ms-instant'
-          when '{LAND}'
-            prettySymbol = 'ms-land'
-          when'{PW}','{PLANESWALKER}'
-            prettySymbol ='ms-planeswalker'
-          when'{SORCERY}'
-            prettySymbol = 'ms-sorcery'
-          when '{MULTIPLE}'
-            prettySymbol = 'ms-multiple'
-          when '{FLASHBACK}'
-            prettySymbol = 'ms-flashback'
-          when '{LOYALTY-UP}'
-            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-up ms-loyalty-#{loyalty}" : 'ms-loyalty-up'
-          when '{LOYALTY-DOWN}'
-            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-down ms-loyalty-#{loyalty}" : 'ms-loyalty-down'
-          when '{LOYALTY-ZERO}'
-            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-zero ms-loyalty-#{loyalty}" : 'ms-loyalty-zero'
-          when '{LOYALTY-START}'
-            prettySymbol = ((0...20) === loyalty) ? "ms-loyalty-start ms-loyalty-#{loyalty}" : 'ms-loyalty-start'
-          when '{DFC-DAY}'
-            prettySymbol = 'ms-dfc-day'
-          when '{DFC-NIGHT}'
-            prettySymbol = 'ms-dfc-night'
-          when '{DFC-SPARK}'
-            prettySymbol = 'ms-dfc-spark'
-          when '{DFC-IGNITE}'
-            prettySymbol = 'ms-dfc-ignite'
-          when '{DFC-MOON}'
-            prettySymbol = 'ms-dfc-moon'
-          when '{DFC-EMRAKUL}'
-            prettySymbol = 'ms-dfc-emrakul'
-          when '{DFC-ENCHANTMENT}'
-            prettySymbol = 'ms-dfc-enchantment'
-          when '{POWER}'
-            prettySymbol = 'ms-power'
-          when '{TOUGHNESS}'
-            prettySymbol = 'ms-toughness'
-          when '{ARTIST-BRUSH}'
-            prettySymbol = 'ms-artist-brush'
-          when '{ARTIST-NIB}'
-            prettySymbol = 'ms-artist-nib'
-          when '{SAGA}'
-            prettySymbol = ((0...5) === saga_number) ? "ms-saga ms-saga-#{saga_number}" : 'ms-saga'
-          when'{ACORN}'
-            prettySymbol ='ms-acorn'
+          when '{T}'
+            prettySymbol = "ms-tap"
+          when '{Q}'
+            prettySymbol = "ms-untap"
+          when '{PW}'
+            prettySymbol = "ms-planeswalker"
           else
-            return symbolText
+            prettySymbol = ""
         end
         
-        i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        easy_match = symbolText.upcase[/{(TAP|UNTAP|TAP-ALT|CHAOS|ARTIFACT|CREATURE|ENCHANTMENT|INSTANT|LAND|PLANESWALKER|SORCERY|MULTIPLE|FLASHBACK|LOYALTY-UP|LOYALTY-DOWN|LOYALTY-ZERO|LOYALTY-START|DFC-DAY|DFC-NIGHT|DFC-SPARK|DFC-IGNITE|DFC-MOON|DFC-EMRAKUL|DFC-ENCHANTMENT|POWER|TOUGHNESS|ARTIST-BRUSH|ARTIST-NIB|SAGA|ACORN)}/, 1]
+        unless easy_match.nil?
+          prettySymbol = "ms-#{easy_match.downcase}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          prettySymbol = ((0...20) === loyalty) ? prettySymbol + " ms-loyalty-#{loyalty}" : prettySymbol
+          prettySymbol = ((0...5) === saga_number) ? prettySymbol + " ms-saga-#{saga_number}" : prettySymbol
+          
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
+        
     end
     
     def self.guild_symbols(symbolText, options = {})
+        options = {cost: false, shadow: false, size: 1, fixed_width: false}.merge(options)
+
+        prettySymbol = ""
         
+        
+        guild_match = symbolText.upcase[/{(AZORIUS|BOROS|DIMIR|GOLGARI|GRUUL|IZZET|ORZHOV|RAKDOS|SELESNYA|SIMIC)}/, 1]
+        unless guild_match.nil?
+          prettySymbol = "ms-guild-#{guild_match.downcase}"
+        end
+        
+        clan_match = symbolText.upcase[/{(ABZAN|JESKAI|MARDU|SULTAI|TEMUR|ATARKA|DROMOKA|KOLAGHAN|OJUTAI|SILUMGAR)}/, 1]
+        unless clan_match.nil?
+          prettySymbol = "ms-clan-#{clan_match.downcase}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
     end
     
     def self.poleis_symbols(symbolText, options = {})
-    
+        options = {cost: false, shadow: false, size: 1, fixed_width: false}.merge(options)
+
+        prettySymbol = ""
+        
+        
+        poleis_match = symbolText.upcase[/{(SETESSA|AKROS|MELETIS)}/, 1]
+        unless poleis_match.nil?
+          # according to mana font docs, polis not poleis for css code
+          prettySymbol = "ms-polis-#{poleis_match.downcase}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
     end
     
     private
