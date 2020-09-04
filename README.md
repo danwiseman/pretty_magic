@@ -3,6 +3,8 @@
 Pretty Magic takes text in curly brackets as used on the [Scryfall API](https://scryfall.com/docs/api/colors) as well as other text 
 and puts them into `<i>` html tags for use with the [andrewgioia/mana](https://github.com/andrewgioia/mana) and [andrewgioia/keyrune](https://github.com/andrewgioia/keyrune) fonts.
 
+[![Codeship Status for danwiseman/pretty_magic](https://app.codeship.com/projects/6ca8b980-d10e-0138-83ee-46ba07b94fb7/status?branch=master)](https://app.codeship.com/projects/408163)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -28,6 +30,9 @@ Run `PrettyMagic::ManaIcons.card_symbols("{CARD SYMBOL}")` to get html tags for 
 Run `PrettyMagic::ManaIcons.guild_symbols("{GUILD}")` to get html tags for the Guild and Clan Watermarks as documented at https://mana.andrewgioia.com/icons.html
 
 Run `PrettyMagic::ManaIcons.poleis_symbols("{POLEIS}")` to get html tags for the Poleis Symbols as documented at https://mana.andrewgioia.com/icons.html
+
+Run `PrettyMagic::ManaIcons.add_icons_to_text("YOUR TEXT WITH TAGS IN IT")` to have all four symbol types ran against a long piece of text. Such as the Oracle 
+Text of a card. i.e. `{X}{B/P}: Remove up to X counters from target permanent. For each counter removed this way, Hex Parasite gets +1/+0 until end of turn. ({B/P} can be paid with either {B} or 2 life.)`
 
 Also, ensure the fonts are installed as documented on the fonts' githubs.
 
