@@ -1,5 +1,5 @@
 module PrettyMagic
-  class Icons
+  class ManaIcons
     def self.mana_symbols(symbolText, options = {})
         options = {cost: true, shadow: false, size: 1, fixed_width: false}.merge(options)
 

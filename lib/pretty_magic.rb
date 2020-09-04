@@ -1,5 +1,5 @@
 require "pretty_magic/version"
-require "pretty_magic/icons"
+require "pretty_magic/mana_icons"
 
 module PrettyMagic
   class Error < StandardError; end
