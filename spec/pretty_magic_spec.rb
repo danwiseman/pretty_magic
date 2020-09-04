@@ -40,8 +40,18 @@ RSpec.describe PrettyMagic do
   end
   
   
-  it "takes a Guild and Clan Watermarks symbol in curly brackets and outputs an html <i> tag with the correct classes"
-  it "takes an invalid guild and clan symbol in curly brackets and outputs the symbol back unchanged"
+  it "takes a Guild and Clan Watermarks symbol in curly brackets and outputs an html <i> tag with the correct classes" do
+    expect(PrettyMagic::Icons.guild_symbols("{azorius}")).to eql("<i class=\"ms ms-guild-azorius \"></i>")
+    expect(PrettyMagic::Icons.guild_symbols("{mardu}")).to eql("<i class=\"ms ms-clan-mardu \"></i>")
+    
+    
+  end
+  
+  
+  it "takes an invalid guild and clan symbol in curly brackets and outputs the symbol back unchanged" do
+    expect(PrettyMagic::Icons.guild_symbols("{bill.murray}")).to eql("{bill.murray}")
+    
+  end
   
   it "takes a Poleis symbol in curly brackets and outputs an html <i> tag with the correct classes"
   it "takes an poleis card symbol in curly brackets and outputs the symbol back unchanged"

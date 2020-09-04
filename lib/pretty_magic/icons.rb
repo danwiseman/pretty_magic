@@ -75,7 +75,26 @@ module PrettyMagic
     end
     
     def self.guild_symbols(symbolText, options = {})
+        options = {cost: false, shadow: false, size: 1, fixed_width: false}.merge(options)
+
+        prettySymbol = ""
         
+        
+        guild_match = symbolText.upcase[/{(AZORIUS|BOROS|DIMIR|GOLGARI|GRUUL|IZZET|ORZHOV|RAKDOS|SELESNYA|SIMIC)}/, 1]
+        unless guild_match.nil?
+          prettySymbol = "ms-guild-#{guild_match.downcase}"
+        end
+        
+        clan_match = symbolText.upcase[/{(ABZAN|JESKAI|MARDU|SULTAI|TEMUR|ATARKA|DROMOKA|KOLAGHAN|OJUTAI|SILUMGAR)}/, 1]
+        unless clan_match.nil?
+          prettySymbol = "ms-clan-#{clan_match.downcase}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
     end
     
     def self.poleis_symbols(symbolText, options = {})
