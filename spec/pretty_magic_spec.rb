@@ -13,6 +13,9 @@ RSpec.describe PrettyMagic do
     expect(PrettyMagic::Icons.mana_symbols("{U}")).to eql("<i class=\"ms ms-u ms-cost \"></i>")
     expect(PrettyMagic::Icons.mana_symbols("{½}", shadow: true)).to eql("<i class=\"ms ms-1-2 ms-cost ms-shadow \"></i>")
     
+    expect(PrettyMagic::Icons.mana_symbols("{2/W}", shadow: true)).to eql("<i class=\"ms ms-2w ms-cost ms-shadow \"></i>")
+    expect(PrettyMagic::Icons.mana_symbols("{B/G}", shadow: true)).to eql("<i class=\"ms ms-bg ms-cost ms-shadow \"></i>")
+    
   end
   
   it "takes a non valid mana or resource code and returns the code back unchanged" do
@@ -53,8 +56,16 @@ RSpec.describe PrettyMagic do
     
   end
   
-  it "takes a Poleis symbol in curly brackets and outputs an html <i> tag with the correct classes"
-  it "takes an poleis card symbol in curly brackets and outputs the symbol back unchanged"
+  it "takes a Poleis symbol in curly brackets and outputs an html <i> tag with the correct classes" do
+    expect(PrettyMagic::Icons.poleis_symbols("{akros}")).to eql("<i class=\"ms ms-polis-akros \"></i>")
+    
+  end
+  
+  it "takes an poleis card symbol in curly brackets and outputs the symbol back unchanged" do
+    
+    expect(PrettyMagic::Icons.poleis_symbols("{bill.murray}")).to eql("{bill.murray}")
+    
+  end
   
   
 end

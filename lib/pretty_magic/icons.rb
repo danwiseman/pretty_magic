@@ -21,10 +21,8 @@ module PrettyMagic
         easy_match = symbolText.upcase[/{(X|Y|Z|0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|100|1000000|INFINITY|P|HW|HR|W|U|B|R|G|C|S|E)}/, 1]
         # split or hybrids
         split_match = symbolText.upcase[/{(W\/U|W\/B|B\/R|B\/G|U\/B|U\/R|R\/G|R\/W|G\/W|G\/U|2\/W|2\/U|2\/B|2\/R|2\/G|W\/P|U\/P|B\/P|R\/P|G\/P)}/, 1]
-        
-        puts easy_match
-        puts split_match
-        
+ 
+ 
         unless easy_match.nil?
           prettySymbol = "ms-#{easy_match.downcase}"
         end
@@ -98,7 +96,22 @@ module PrettyMagic
     end
     
     def self.poleis_symbols(symbolText, options = {})
-    
+        options = {cost: false, shadow: false, size: 1, fixed_width: false}.merge(options)
+
+        prettySymbol = ""
+        
+        
+        poleis_match = symbolText.upcase[/{(SETESSA|AKROS|MELETIS)}/, 1]
+        unless poleis_match.nil?
+          # according to mana font docs, polis not poleis for css code
+          prettySymbol = "ms-polis-#{poleis_match.downcase}"
+        end
+        
+        if prettySymbol == ""
+          symbolText
+        else
+          i_tag(prettySymbol + ' ' + optional_classes(options[:cost], options[:shadow], options[:size], options[:fixed_width]))
+        end
     end
     
     private
