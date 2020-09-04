@@ -114,6 +114,17 @@ module PrettyMagic
         end
     end
     
+    def self.add_icons_to_text(long_text, options = {})
+      options = {cost: true, shadow: false, size: 1, fixed_width: false}.merge(options)
+  
+      pretty_text = long_text.gsub(/{.+?}/) { |symbolText|
+          use_all_symbols(symbolText, { cost: options[:cost], shadow: options[:shadow], size: options[:size],
+              fixed_width: options[:fixed_width]} )
+        }
+      
+      pretty_text
+    end
+    
     private
     
     def self.i_tag(inner_classes)
@@ -138,6 +149,20 @@ module PrettyMagic
         end 
         
         class_text
+    end
+    
+    def self.use_all_symbols(symbolText, options = {})
+      options = {cost: true, shadow: false, size: 1, fixed_width: false}.merge(options)
+      replaced = mana_symbols(symbolText, { cost: options[:cost], shadow: options[:shadow], size: options[:size],
+        fixed_width: options[:fixed_width]} )
+      replaced = card_symbols(replaced, { cost: options[:cost], shadow: options[:shadow], size: options[:size],
+        fixed_width: options[:fixed_width]} )
+      replaced = guild_symbols(replaced, { cost: options[:cost], shadow: options[:shadow], size: options[:size],
+        fixed_width: options[:fixed_width]} )
+      replaced = poleis_symbols(replaced, { cost: options[:cost], shadow: options[:shadow], size: options[:size],
+        fixed_width: options[:fixed_width]} )
+      replaced
+      
     end
   end
 end
