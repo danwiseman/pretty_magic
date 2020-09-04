@@ -67,5 +67,18 @@ RSpec.describe PrettyMagic do
     
   end
   
+  it "takes long text from a magic card and replaces the codes with the nice i tags from all the categories" do
+    
+    expect(PrettyMagic::Icons.add_icons_to_text("{T}: Add {C}{C}. Activate this ability only if you control five or more lands.")).to eql(
+      "<i class=\"ms ms-tap ms-cost \"></i>: Add <i class=\"ms ms-c ms-cost \"></i><i class=\"ms ms-c ms-cost \"></i>. Activate this ability only if you control five or more lands.")
+    
+    expect(PrettyMagic::Icons.add_icons_to_text(
+        "{X}{B/P}: Remove up to X counters. ({B/P} can be paid with either {B} or 2 life.)")).to eql(
+        "<i class=\"ms ms-x ms-cost \"></i><i class=\"ms ms-bp ms-cost \"></i>: Remove up to X counters. (<i class=\"ms ms-bp ms-cost \"></i> can be paid with either <i class=\"ms ms-b ms-cost \"></i> or 2 life.)")
+    
+    expect(PrettyMagic::Icons.add_icons_to_text("{T}: To activate Bill {bill.murray}")).to eql("<i class=\"ms ms-tap ms-cost \"></i>: To activate Bill {bill.murray}")
+    
+  end
+  
   
 end
