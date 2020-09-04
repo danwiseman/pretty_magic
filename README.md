@@ -38,7 +38,9 @@ Also, ensure the fonts are installed as documented on the fonts' githubs.
 
 ## Notes
 
-Keyrune is not yet adapted.
+Current for 1.6.0 for the Mana Font
+
+Keyrune is not yet implemented.
 
 ## Development
 
