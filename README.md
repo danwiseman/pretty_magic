@@ -1,7 +1,7 @@
 # PrettyMagic
 
 Pretty Magic takes text in curly brackets as used on the [Scryfall API](https://scryfall.com/docs/api/colors) as well as other text 
-and puts them into `<i>` html tags for use with the andrewgioia/mana and andrewgioia/mana fonts.
+and puts them into `<i>` html tags for use with the [andrewgioia/mana](https://github.com/andrewgioia/mana) and [andrewgioia/keyrune](https://github.com/andrewgioia/keyrune) fonts.
 
 ## Installation
 
@@ -21,7 +21,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run `PrettyMagic::ManaIcons.mana_symbols("{MANA SYMBOL}")` to get html tags for the Mana & Resource Symbols as documented at https://mana.andrewgioia.com/icons.html
+
+Run `PrettyMagic::ManaIcons.card_symbols("{CARD SYMBOL}")` to get html tags for the Card Symbols as documented at https://mana.andrewgioia.com/icons.html
+
+Run `PrettyMagic::ManaIcons.mana_symbols("{GUILD}")` to get html tags for the Guild and Clan Watermarks as documented at https://mana.andrewgioia.com/icons.html
+
+Run `PrettyMagic::ManaIcons.mana_symbols("{POLEIS}")` to get html tags for the Poleis Symbols as documented at https://mana.andrewgioia.com/icons.html
+
+Also, ensure the fonts are installed as documented on the fonts' githubs.
+
+## Notes
+
+Keyrune is not yet adapted.
 
 ## Development
 
