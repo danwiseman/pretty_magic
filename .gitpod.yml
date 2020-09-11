@@ -1,2 +1,6 @@
 tasks:
   - init: bundle install
+vscode:
+  extensions:
+    - connorshea.vscode-ruby-test-adapter@0.6.1:HO9rpcRv7bmRIuo7Mty/zg==
+    - hbenl.vscode-test-explorer@2.15.0:koqDUMWDPJzELp/hdS/lWw==
