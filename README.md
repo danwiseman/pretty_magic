@@ -34,13 +34,15 @@ Run `PrettyMagic::ManaIcons.poleis_symbols("{POLEIS}")` to get html tags for the
 Run `PrettyMagic::ManaIcons.add_icons_to_text("YOUR TEXT WITH TAGS IN IT")` to have all four symbol types ran against a long piece of text. Such as the Oracle 
 Text of a card. i.e. `{X}{B/P}: Remove up to X counters from target permanent. For each counter removed this way, Hex Parasite gets +1/+0 until end of turn. ({B/P} can be paid with either {B} or 2 life.)`
 
+Run `PrettyMagic::KeyruneIcons.set_symbols("{SET_CODE}")` to get the html tags for the set symbols as documented at https://keyrune.andrewgioia.com/icons.html
+
 Also, ensure the fonts are installed as documented on the fonts' githubs.
 
 ## Notes
 
-Current for 1.6.0 for the Mana Font
+:information_source: Mana Font: 1.6.0
 
-Keyrune is not yet implemented.
+:information_source: Keyrune Font: 3.7.0
 
 ## Development
 
