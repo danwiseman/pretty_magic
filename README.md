@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/danwiseman/pretty_magic)
+
 # PrettyMagic
 
 Pretty Magic takes text in curly brackets as used on the [Scryfall API](https://scryfall.com/docs/api/colors) as well as other text 
