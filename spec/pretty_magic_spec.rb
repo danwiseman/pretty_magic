@@ -14,7 +14,7 @@ RSpec.describe PrettyMagic do
     expect(PrettyMagic::ManaIcons.mana_symbols("{½}", shadow: true)).to eql("<i class=\"ms ms-1-2 ms-cost ms-shadow \"></i>")
     
     expect(PrettyMagic::ManaIcons.mana_symbols("{2/W}", shadow: true)).to eql("<i class=\"ms ms-2w ms-cost ms-shadow \"></i>")
-    expect(PrettyMagic::ManaIcons.mana_symbols("{B/G}", shadow: true)).to eql("<i class=\"ms ms-bg ms-cost ms-shadow \"></i>")
+    expect(PrettyMagic::ManaIcons.mana_symbols("{B/G}", size: 2)).to eql("<i class=\"ms ms-bg ms-cost ms-2x \"></i>")
     
   end
   
@@ -78,6 +78,11 @@ RSpec.describe PrettyMagic do
     
     expect(PrettyMagic::ManaIcons.add_icons_to_text("{T}: To activate Bill {bill.murray}")).to eql("<i class=\"ms ms-tap ms-cost \"></i>: To activate Bill {bill.murray}")
     
+  end
+  
+  it "takes a set code and returns the appropriate set icon" do
+    expect(PrettyMagic::KeyruneIcons.set_symbols("{soi}")).to eql("<i class=\"ss ss-soi ss-common \"></i>")
+    expect(PrettyMagic::KeyruneIcons.set_symbols("{ss3}", color: "rare", size: 2)).to eql("<i class=\"ss ss-ss3 ss-rare ss-2x \"></i>")
   end
   
   

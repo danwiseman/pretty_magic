@@ -143,7 +143,7 @@ module PrettyMagic
             class_text += "ms-shadow "
           end
           if(size > 1)
-            class_text += "ms-#{options[:size]}x "
+            class_text += "ms-#{size}x "
           end
           if(fixed_width)
             class_text += "ms-fw "
